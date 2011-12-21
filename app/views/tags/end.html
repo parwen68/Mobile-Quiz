@@ -22,7 +22,7 @@
 				var answer = localStorage.getItem("#question" + i);
 				while(answer) {
 					data['answer.' + i] = answer;					
-					answer = localStorage.getItem("#question" + i++);
+					answer = localStorage.getItem("#question" + (++i) );
 				}
 				
 				$.ajax({
