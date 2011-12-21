@@ -1,0 +1,39 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<div data-role="page" id="end">
+
+	<div data-role="header">
+		<h1>#{get 'title' /}</h1>
+	</div>
+
+	<div data-role="content">	
+		<img alt="" src="@{'/public/images/callista-enterprise.gif'}"><br>
+		The End
+		<a href="#" data-role="button" data-inline="true">Starta</a>
+	</div>	
+	<script type="text/javascript">
+		(function(){
+			
+			$('#end a').bind('vclick', function(){
+				var data = {};
+				var i = 1;
+				
+				var answer = localStorage.getItem("#question" + i);
+				while(answer) {
+					data['answer.' + i] = answer;					
+					answer = localStorage.getItem("#question" + i++);
+				}
+				
+				$.ajax({
+					url: '@{submit()}',
+					type: 'POST',
+					data: $.param( data ),
+					success: function() {
+						localStorage.clear();
+					}
+				});
+			});
+		})();
+	</script>
+</div>

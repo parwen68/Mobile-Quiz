@@ -1,0 +1,44 @@
+%{
+	thisPage = 'question' + _question.id;
+	nextPage = _last ? 'end' : 'question' + (_question.id + 1);
+	prevPage = 'question' + (_question.id - 1);
+}%
+
+<div data-role="page" id="${thisPage}">
+
+	<div data-role="header">
+		<h1>#{get 'title' /}</h1>
+	</div>
+
+	<div data-role="content">
+		<p>${_question.text}</p>	
+		<form id="form${_question.id}">
+			<input type="hidden" name="_questionId" value="${_question.id}">
+			<label for="alt1">${_question.alternative1}</label>
+			<input id="alt1" type="radio" name="answer" value="1">
+			<label for="alt2">${_question.alternative2}</label>
+			<input id="alt2" type="radio" name="answer" value="2">
+			<label for="alt3">${_question.alternative3}</label>
+			<input id="alt3" type="radio" name="answer" value="3">
+		</form>
+		#{if (_question.id != 1) }
+		<a href="#${prevPage}" data-role="button" data-inline="true" data-direction="reverse">Förra</a>
+		#{/if}
+		<a href="#${nextPage}" data-role="button" data-inline="true">Nästa</a>
+	</div>    
+	<script type="text/javascript">
+		(function(){
+			var question = "#${thisPage}";
+	
+			var selection = localStorage.getItem(question);
+			if(selection) {
+				$(question + ' input[value=' + selection + ']').prop('checked','checked');
+			}
+									
+			$(question + ' input[type=radio]').change(function(){
+				console.log(question + " " + $(this).prop('value'));
+				localStorage.setItem(question, $(this).prop('value'));
+			});
+		})();
+	</script>
+</div>

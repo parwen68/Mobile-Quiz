@@ -1,0 +1,11 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+#{start /}
+
+#{list items:questions, as:'question'}
+	%{ last = question.id == questions.size() }%
+	#{page question:question, last:last /}
+#{/list}
+
+#{end /}

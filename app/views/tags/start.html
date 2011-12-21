@@ -1,0 +1,29 @@
+<div data-role="page" id="start">
+
+	<div data-role="header">
+		<h1>#{get 'title' /}</h1>
+	</div>
+
+	<div data-role="content">	
+		<img alt="" src="@{'/public/images/callista-enterprise.gif'}"><br>
+		<input type="text" name="namn">
+		<a href="#question1" data-role="button" data-inline="true">Starta</a>
+	</div>	
+	<script type="text/javascript">		
+		(function(){
+			var start = #{jsAction @start(':name') /};
+			
+			$('#start a').bind('vclick', function(){
+				
+				var name = $('#start input[type=text]').val();
+				
+				$.ajax({
+					url: start({ name: name }),
+					success: function(data) {
+						console.log(data)
+					}
+				});
+			});
+		})();
+	</script>
+</div>

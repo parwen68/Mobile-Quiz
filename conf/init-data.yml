@@ -1,0 +1,28 @@
+Question(1):
+  text: 'Question 1'
+  alternative1: 'alt 1'  
+  alternative2: 'alt 2'
+  alternative3: 'alt 3'
+  correctAlternative: 3
+
+Question(2):
+  text: 'Question 2'
+  alternative1: 'alt 1'  
+  alternative2: 'alt 2'
+  alternative3: 'alt 3'
+  correctAlternative: 3
+
+Question(3):
+  text: 'Question 3'
+  alternative1: 'alt 1'  
+  alternative2: 'alt 2'
+  alternative3: 'alt 3'
+  correctAlternative: 3
+
+Question(4):
+  text: 'Question 4'
+  alternative1: 'alt 1'  
+  alternative2: 'alt 2'
+  alternative3: 'alt 3'
+  correctAlternative: 3
+  
