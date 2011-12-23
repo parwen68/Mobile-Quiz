@@ -1,0 +1,41 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<div data-role="page" id="answer">
+
+	<div data-role="header">
+		<h1>#{get 'title' /}</h1>
+	</div>
+
+	<div data-role="content">	
+		<img alt="" src="@{'/public/images/callista-enterprise.gif'}"><br>
+		<a href="#" data-role="button" data-inline="true">Posta svar</a>
+	</div>	
+	<script type="text/javascript">
+		(function(){
+			
+			$('#answer a').bind('vclick', function(){
+				var data = {};
+				var i = 1;
+				
+				var answer = localStorage.getItem("#question" + i);
+				while(answer) {
+					data['answer.' + i] = answer;					
+					answer = localStorage.getItem("#question" + (++i) );
+				}
+				
+				$.ajax({
+					url: '@{submit()}',
+					type: 'POST',
+					data: $.param( data ),
+					success: function(data) {
+						$('input[type="radio"]').prop('checked', false);
+						localStorage.clear();
+						$("#end .ca").html("Rätt antal svar: " + data.correctanswers);
+						$.mobile.changePage("#end");
+					}
+				});
+			});
+		})();
+	</script>
+</div>

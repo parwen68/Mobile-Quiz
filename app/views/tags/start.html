@@ -21,6 +21,7 @@
 					url: start({ name: name }),
 					success: function(data) {
 						console.log(data)
+						var name = $('#start input[type=text]').val("");						
 					}
 				});
 			});

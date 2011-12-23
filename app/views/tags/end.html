@@ -9,31 +9,8 @@
 
 	<div data-role="content">	
 		<img alt="" src="@{'/public/images/callista-enterprise.gif'}"><br>
-		The End
-		<a href="#" data-role="button" data-inline="true">Starta</a>
+		<a href="@{index()}" data-role="button" data-ajax="false" data-inline="true">Avsluta</a><br>
+		<div class="ca"></div>
 	</div>	
-	<script type="text/javascript">
-		(function(){
-			
-			$('#end a').bind('vclick', function(){
-				var data = {};
-				var i = 1;
-				
-				var answer = localStorage.getItem("#question" + i);
-				while(answer) {
-					data['answer.' + i] = answer;					
-					answer = localStorage.getItem("#question" + (++i) );
-				}
-				
-				$.ajax({
-					url: '@{submit()}',
-					type: 'POST',
-					data: $.param( data ),
-					success: function() {
-						localStorage.clear();
-					}
-				});
-			});
-		})();
-	</script>
+	<div id="correctanswers"></div>
 </div>

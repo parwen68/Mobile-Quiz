@@ -12,10 +12,10 @@ public class Answer extends Model {
     public Long question;
     public Long answer;
 
-    public Answer(String name, Long question, Long answer) {
+    public Answer(String name, String question, String answer) {
 		this.name = name;
-		this.question = question;
-		this.answer = answer;
+		this.question = Long.parseLong(question);
+		this.answer = Long.parseLong(answer);
 	}
     
 }

@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,9 +23,21 @@ public class Application extends Controller {
     
     public static void submit(Map<String,String> answer) {
     	String name = session.get("name");
+    	
+    	List<Question> questions = Question.find("order by id").fetch();
 		for(String key : answer.keySet()) {
-			Answer a = new Answer(name, Long.parseLong(key), Long.parseLong(answer.get(key)));
+			System.out.println(key);
+			Answer a = new Answer(name, key, answer.get(key));
 			a.save();
 		}
-	}
+		
+		int correctAnswers = 0;
+		for(Question q : questions) {
+			String a = answer.get(q.getId().toString());
+			if(a.equals(Integer.toString(q.correctAlternative))) {
+				correctAnswers++;
+			}
+		}	
+		renderJSON("{\"correctanswers\": " + correctAnswers + "}");
+	}    
 }
